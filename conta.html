@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="account-page">
+
+    <input type="file" id="upload-banner" accept="image/*,video/*,image/gif" hidden>
+    <input type="file" id="upload-avatar" accept="image/*,video/*,image/gif" hidden>
+
+    <div class="profile-header">
+        <div class="profile-banner" id="banner-container" onclick="document.getElementById('upload-banner').click()">
+            <div class="edit-overlay"><i class="fas fa-camera"></i> Alterar Capa</div>
+        </div>
+        
+        <div class="profile-info-container">
+            <div class="profile-avatar-wrapper" onclick="document.getElementById('upload-avatar').click()">
+                <div class="profile-avatar" id="avatar-container"></div>
+                <div class="edit-overlay-circle"><i class="fas fa-camera"></i></div>
+            </div>
+            
+            <h2 class="profile-name" style="display: flex; align-items: center; justify-content: center;">
+                <span id="display-name" onclick="editarNome()">Nome</span> 
+                <span id="verified-badge-container" style="display:none;"><i class="fas fa-check-circle verified-ig"></i></span>
+            </h2>
+            <p style="color:var(--primary-red); font-size:0.9rem;">
+                <span id="display-username" onclick="editarUsername()">@user</span>
+                <i class="fas fa-pen" style="font-size:0.7rem; color:#888; cursor:pointer;" onclick="editarUsername()"></i>
+            </p>
+            <p class="profile-stats">Entrou desde: <span id="join-date"></span> • Pontos: <span id="user-points" style="font-weight:bold;">0</span></p>
+        </div>
+    </div>
+
+    <div id="mod-panel" style="display:none; padding:20px; background:#111; border:1px solid var(--primary-red); border-radius:8px; margin:20px 5%; text-align: center;">
+        <h3 style="color:var(--primary-red); margin-bottom:15px;"><i class="fas fa-shield-alt"></i> Painel Admin</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <button class="page-btn" style="background:#ff4757;" onclick="openModal('modal-ban')">Banir</button>
+            <button class="page-btn" style="background:#2ed573;" onclick="openModal('modal-unban')">Desbanir</button>
+            <button class="page-btn" style="background:#ff4757;" onclick="openModal('modal-delete')">Deletar Conta</button>
+            <button class="page-btn" style="background:#ffa502;" onclick="openModal('modal-points')">Dar Pontos</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-ban"><div class="modal-box"><h3>Banir Usuário</h3><input type="text" id="target-ban" class="modal-input" placeholder="@username"><div class="modal-buttons"><button class="page-btn" style="background:#444;" onclick="closeModal()">Cancelar</button><button class="page-btn" style="background:#ff4757;" onclick="BD.acaoModerador('banir', document.getElementById('target-ban').value)">Confirmar</button></div></div></div>
+    <div class="modal-overlay" id="modal-unban"><div class="modal-box"><h3>Desbanir Usuário</h3><input type="text" id="target-unban" class="modal-input" placeholder="@username"><div class="modal-buttons"><button class="page-btn" style="background:#444;" onclick="closeModal()">Cancelar</button><button class="page-btn" style="background:#2ed573;" onclick="BD.acaoModerador('desbanir', document.getElementById('target-unban').value)">Confirmar</button></div></div></div>
+    <div class="modal-overlay" id="modal-delete"><div class="modal-box"><h3>Deletar Conta</h3><input type="text" id="target-del" class="modal-input" placeholder="@username"><div class="modal-buttons"><button class="page-btn" style="background:#444;" onclick="closeModal()">Cancelar</button><button class="page-btn" style="background:#ff4757;" onclick="BD.acaoModerador('deletar', document.getElementById('target-del').value)">Confirmar</button></div></div></div>
+    <div class="modal-overlay" id="modal-points"><div class="modal-box"><h3>Dar Pontos</h3><input type="text" id="target-pts-user" class="modal-input" placeholder="@username" style="margin-bottom:10px;"><input type="text" id="target-pts-amount" class="modal-input" placeholder="Qtd ou 'infinito'"><div class="modal-buttons"><button class="page-btn" style="background:#444;" onclick="closeModal()">Cancelar</button><button class="page-btn" style="background:#ffa502;" onclick="BD.acaoModerador('pontos', document.getElementById('target-pts-user').value, document.getElementById('target-pts-amount').value)">Confirmar</button></div></div></div>
+
+    <section class="category-slider" style="margin-bottom: 80px;">
+        <h2 style="text-align: center; justify-content: center; margin-bottom: 15px;">Configurações</h2>
+        
+        <div class="config-container">
+            <div class="config-row">
+                <i class="fas fa-bell" style="width: 25px; color:#aaa;"></i>
+                <span class="label">Notificações do Site</span>
+                <label class="switch"><input type="checkbox" checked><span class="slider-toggle"></span></label>
+            </div>
+            <div class="config-row">
+                <i class="fas fa-play-circle" style="width: 25px; color:#aaa;"></i>
+                <span class="label">Autoplay no Player</span>
+                <label class="switch"><input type="checkbox"><span class="slider-toggle"></span></label>
+            </div>
+            
+            <h3 style="font-size: 1rem; margin: 25px 0 15px; color: #fff;">Temas do Aplicativo</h3>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <div class="theme-dot" style="background: #C63C51;" onclick="mudarTema('dark', this)"></div>
+                <div class="theme-dot" style="background: #1DA1F2;" onclick="mudarTema('blue', this)"></div>
+                <div class="theme-dot" style="background: #2ed573;" onclick="mudarTema('green', this)"></div>
+                <div class="theme-dot" style="background: #ffa502;" onclick="mudarTema('orange', this)"></div>
+                <div class="theme-dot" style="background: #a4b0be; border: 2px solid #555;" onclick="mudarTema('light', this)"></div>
+            </div>
+
+            <div class="config-row" style="justify-content: center; color: #ff4757; border-top:1px solid #333; margin-top:20px; cursor:pointer;" onclick="BD.deslogar()">
+                <i class="fas fa-sign-out-alt" style="margin-right:10px;"></i> Sair da Conta
+            </div>
+        </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="generos.html" class="nav-item"><i class="fas fa-th-large"></i><span>Gêneros</span></a>
+        <a href="explorar.html" class="nav-item"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="pedidos.html" class="nav-item"><i class="fas fa-comment-dots"></i><span>Pedidos</span></a>
+        <a href="social.html" class="nav-item"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item active"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        const user = BD.getLogado();
+        if(!user) window.location.href = 'login.html';
+
+        document.getElementById('display-name').innerText = user.name;
+        document.getElementById('display-username').innerText = user.username;
+        document.getElementById('join-date').innerText = user.joined;
+        
+        const ptSpan = document.getElementById('user-points');
+        ptSpan.innerText = user.points;
+        if(user.points === "INFINITO") ptSpan.className = "infinito-rgb";
+
+        if(user.type === 'moderator') {
+            document.getElementById('verified-badge-container').style.display = 'inline-block';
+            document.getElementById('mod-panel').style.display = 'block';
+        }
+
+        // --- Renderização de Mídia (Com proteção contra erro de tamanho) ---
+        function renderMedia(container, data) {
+            if(!data) {
+                container.innerHTML = `<img src="https://via.placeholder.com/300/333/fff?text=+" style="width:100%; height:100%; object-fit:cover;">`;
+                return;
+            }
+            container.innerHTML = data.type.startsWith('video') ? 
+                `<video src="${data.src}" loop muted autoplay playsinline style="width:100%; height:100%; object-fit:cover;"></video>` :
+                `<img src="${data.src}" style="width:100%; height:100%; object-fit:cover;">`;
+        }
+        renderMedia(document.getElementById('banner-container'), user.banner);
+        renderMedia(document.getElementById('avatar-container'), user.avatar);
+
+        function handleUpload(inputId, property) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if(file) {
+                    // Para vídeos grandes, cria URL temporária para não bugar o LocalStorage imediatamente
+                    const tempUrl = URL.createObjectURL(file);
+                    renderMedia(document.getElementById(property === 'banner' ? 'banner-container' : 'avatar-container'), {src: tempUrl, type: file.type});
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        try {
+                            user[property] = { src: event.target.result, type: file.type };
+                            BD.atualizarLogado(user);
+                            SystemModal.alert("Sucesso", "Mídia de perfil atualizada!");
+                        } catch(err) {
+                            SystemModal.alert("Aviso", "A foto/vídeo é muito grande para salvar permanentemente no navegador, mas você pode visualizá-la agora.");
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        handleUpload('upload-banner', 'banner');
+        handleUpload('upload-avatar', 'avatar');
+
+        function editarNome() {
+            SystemModal.prompt("Editar Nome", "Digite seu novo nome:", (val) => {
+                if(val) { user.name = val; BD.atualizarLogado(user); location.reload(); }
+            });
+        }
+        function editarUsername() {
+            SystemModal.prompt("Editar Username", "Digite seu novo @username:", (val) => {
+                if(!val) return;
+                if(!val.startsWith('@')) { SystemModal.alert("Erro", "O username deve começar com @."); return; }
+                const users = BD.getUsers();
+                if(users.find(u => u.username.toLowerCase() === val.toLowerCase() && u.id !== user.id)) {
+                    SystemModal.alert("Erro", "Este username já está em uso."); return;
+                }
+                user.username = val; BD.atualizarLogado(user); location.reload();
+            });
+        }
+
+        function mudarTema(tema, el) {
+            BD.mudarTema(tema);
+            document.querySelectorAll('.theme-dot').forEach(d => d.style.transform = 'scale(1)');
+            el.style.transform = 'scale(1.2)';
+            SystemModal.alert("Tema Atualizado", "O tema do site foi alterado com sucesso!");
+        }
+    </script>
+</body>
+</html>

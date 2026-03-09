@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="requests-page">
+
+    <header class="navbar">
+        <h1 class="logo-rgb">📋 PEDIDOS </h1>
+        <div class="top-icons">
+            <i class="fas fa-history" title="Meus Pedidos"></i>
+        </div>
+    </header>
+
+    <div class="requests-search-container">
+        <div class="search-box-requests">
+            <input type="text" placeholder="Pesquisar títulos aqui..." id="requestInput">
+            <i class="fas fa-paper-plane send-icon"></i>
+        </div>
+        <p class="requests-help-text">
+            Use o campo de pesquisa acima para encontrar títulos que não encontrou no aplicativo. Antes de solicitar qualquer conteúdo, por favor, leia atentamente as regras. Estamos aqui para ajudar!
+        </p>
+    </div>
+
+    <section class="category-slider" style="margin-bottom: 80px;">
+        <div class="category-header">
+            <h2>Ranking</h2>
+            <a href="#" class="ver-mais-btn">Mais ></a>
+        </div>
+        <div class="requests-list" id="requests-grid">
+            
+            <div class="request-item">
+                <div class="poster-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSRF4ni2WHlfeOpr-sxCdKojN6yEVWms__twKw9CEJwIrZrDhyV7Fmml0&s=10" class="request-poster">
+                    <div class="add-icon"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="request-info">
+                    <h4>On My Block</h4>
+                    <p>13311 Solicitações</p>
+                    <span class="type-badge-requests">SÉRIE</span>
+                </div>
+                <div class="rank-number">#1</div>
+            </div>
+
+            <div class="request-item">
+                <div class="poster-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSRF4ni2WHlfeOpr-sxCdKojN6yEVWms__twKw9CEJwIrZrDhyV7Fmml0&s=10" class="request-poster">
+                    <div class="add-icon"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="request-info">
+                    <h4>Jessie</h4>
+                    <p>12792 Solicitações</p>
+                    <span class="type-badge-requests">SÉRIE</span>
+                </div>
+                <div class="rank-number">#2</div>
+            </div>
+
+            </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="generos.html" class="nav-item"><i class="fas fa-th-large"></i><span>Gêneros</span></a>
+        <a href="explorar.html" class="nav-item"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="pedidos.html" class="nav-item active"><i class="fas fa-comment-dots"></i><span>Pedidos</span></a>
+        <a href="social.html" class="nav-item"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="explore-page">
+
+    <header class="navbar">
+        <h1 class="logo-rgb">🧭 EXPLORAR </h1>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar...">
+        </div>
+    </header>
+
+    <div id="search-results-screen">
+        <h2 style="margin-bottom: 20px; padding: 0 5%;">Resultados para "<span id="termo-digitado" style="color: var(--primary-red);"></span>"</h2>
+        <div class="search-grid" id="search-grid-container"></div>
+    </div>
+
+    <div id="main-content-wrapper">
+        <div class="explore-filters-container" style="position:relative;">
+            <div class="filter-box-requests active-filter" style="position:relative;" onclick="toggleDrop('drop-tipo')">
+                <span id="label-tipo">Filmes</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu" id="drop-tipo">
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Filmes')">Filmes</div>
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Séries')">Séries</div>
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Desenhos')">Desenhos</div>
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Documentário')">Documentário</div>
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Gameplay')">Gameplay</div>
+                    <div class="dropdown-item" onclick="selecionar('Tipo', 'Animes')">Animes</div>
+                </div>
+            </div>
+            
+            <div class="filter-box-requests active-filter" style="position:relative;" onclick="toggleDrop('drop-ano')">
+                <span id="label-ano">2026</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu" id="drop-ano">
+                    </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <div class="explore-grid col-3" id="explore-grid-container">
+                </div>
+            <div class="pagination-controls">
+                <button class="page-btn disabled" id="btn-prev">Anterior</button>
+                <button class="page-btn" id="btn-next">Próxima</button>
+            </div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="explorar.html" class="nav-item active"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleDrop(id) { 
+            event.stopPropagation();
+            document.querySelectorAll('.dropdown-menu').forEach(m => { if(m.id !== id) m.classList.remove('show') });
+            document.getElementById(id).classList.toggle('show'); 
+        }
+        function selecionar(filtro, valor) {
+            document.getElementById(`label-${filtro.toLowerCase()}`).innerText = valor;
+            SystemModal.alert("Filtro Aplicado", `A categoria foi alterada para: <b>${valor}</b>`);
+        }
+        
+        const dropAno = document.getElementById('drop-ano');
+        for(let ano = 2026; ano >= 1927; ano--) {
+            dropAno.innerHTML += `<div class="dropdown-item" onclick="selecionar('Ano', '${ano}')">${ano}</div>`;
+        }
+
+        const grid = document.getElementById('explore-grid-container');
+        for(let i=1; i<=18; i++) {
+            grid.innerHTML += `<div class="card"><img src="https://via.placeholder.com/200x300/111/fff?text=Cine+${i}"><div class="card-info"><h4>Título ${i}</h4></div></div>`;
+        }
+        
+        document.getElementById('btn-next').onclick = () => {
+            document.getElementById('btn-prev').classList.remove('disabled');
+            SystemModal.alert("Páginas", "Navegação de página simulada com sucesso!");
+        };
+    </script>
+</body>
+</html>

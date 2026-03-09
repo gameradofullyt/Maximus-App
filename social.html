@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="social-page">
+
+    <header class="navbar fixed-nav">
+        <h1 class="logo-rgb">👥 SOCIAL </h1>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar usuários...">
+        </div>
+    </header>
+
+    <main class="content" style="margin-top: 100px; margin-bottom: 80px;">
+        <h2 style="margin: 0 5% 20px; color: #fff; font-weight: bold; border-left: 4px solid var(--primary-red); padding-left: 10px;">Sugestões de Amizade</h2>
+        
+        <div class="explore-grid" id="users-grid">
+            
+            <div class="user-card-social">
+                <div class="social-cover" style="background-image: url('https://via.placeholder.com/400x100/222/222');"></div>
+                <img src="https://via.placeholder.com/80/ffa502/fff?text=R" class="user-avatar-social">
+                <h4 style="margin-top: 10px; color:#fff;">Renan Cervinski <i class="fas fa-check-circle verified-ig"></i></h4>
+                <p style="color:var(--primary-red); font-size:0.8rem;">@gameradozinho</p>
+                <div style="display:flex; justify-content:center; gap:15px; margin: 10px 0;">
+                    <div><b style="color:#fff;">1.2M</b><br><span style="font-size:0.6rem; color:#888;">SEGUIDORES</span></div>
+                    <div><b style="color:#fff;">340</b><br><span style="font-size:0.6rem; color:#888;">ASSISTIDOS</span></div>
+                </div>
+                <button class="circle-btn play-main" style="width:80%; height:35px; border-radius:20px; margin:0 auto;" onclick="SystemModal.alert('Social', 'Você começou a seguir @gameradozinho!')">Seguir</button>
+            </div>
+
+            <div class="user-card-social">
+                <div class="social-cover" style="background-image: url('https://via.placeholder.com/400x100/111/111');"></div>
+                <img src="https://via.placeholder.com/80/2ed573/fff?text=V" class="user-avatar-social">
+                <h4 style="margin-top: 10px; color:#fff;">Visitante VIP</h4>
+                <p style="color:var(--primary-red); font-size:0.8rem;">@visavip</p>
+                <div style="display:flex; justify-content:center; gap:15px; margin: 10px 0;">
+                    <div><b style="color:#fff;">15</b><br><span style="font-size:0.6rem; color:#888;">SEGUIDORES</span></div>
+                    <div><b style="color:#fff;">12</b><br><span style="font-size:0.6rem; color:#888;">ASSISTIDOS</span></div>
+                </div>
+                <button class="circle-btn-details" style="width:80%; height:35px; border-radius:20px; margin:0 auto;">Seguindo</button>
+            </div>
+
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="social.html" class="nav-item active"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
