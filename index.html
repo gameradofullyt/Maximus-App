@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMERADO TV | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para cards clonados na pesquisa */
+        .card-info h4 { font-size: 0.95rem; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-info p { font-size: 0.75rem; opacity: 0.8; margin: 2px 0; }
+        .card-date { color: var(--primary-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar fixed-nav">
+        <h1 class="logo-rgb" style="cursor: pointer;" onclick="window.location.href='index.html'">🍿 CINE PIPOCA </h1>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar...">
+        </div>
+    </header>
+
+    <div id="search-results-screen">
+        <h2 style="margin-bottom: 20px; padding: 0 5%;">Resultados para "<span id="termo-digitado" style="color: var(--primary-red);"></span>"</h2>
+        <div class="search-grid" id="search-grid-container">
+            </div>
+    </div>
+
+    <div id="main-content-wrapper">
+        
+        <section class="carousel-container no-margin-top">
+            <div class="carousel-item active" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 60%), url('https://image.tmdb.org/t/p/original/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg');">
+                <div style="z-index: 2; max-width: 50%; padding-left: 5%;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Deadpool & Wolverine</h2>
+                    <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Os heróis mais improváveis se unem em uma aventura multiversal cheia de ação e humor ácido.</p>
+                    <button class="play-btn" onclick="window.location.href='detalhes.html?title=Deadpool & Wolverine&img=https://image.tmdb.org/t/p/w220_and_h330_face/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg&url=#'"><i class="fas fa-play"></i> Assistir Agora</button>
+                </div>
+            </div>
+            <button class="slider-arrow prev" style="left: 10px;" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="slider-arrow next" style="right: 10px;" onclick="changeSlide(1)">&#10095;</button>
+        </section>
+
+        <main class="content">
+            
+            <section class="category-slider">
+                <h2 class="category-title netflix-style">
+                    Trailers / Vazados
+                    <a href="explorar.html" class="ver-mais-h2">Gêneros ></a>
+                </h2>
+                <div class="slider-wrapper">
+                    <button class="slider-arrow prev" onclick="scrollSlider(this, -1)">&#10094;</button>
+                    <div class="slider-track">
+                        <div class="card" onclick="window.location.href='detalhes.html?title=Vingadores: Doomsday&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ21uQVvEE5fYZ2D0q4bZI8EDxEOuDoeeg6Gg9TpBO6tEk5DFBhg9vsa4Y&s=10&url=https://youtu.be/Kwzsg8Wkoz0'">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ21uQVvEE5fYZ2D0q4bZI8EDxEOuDoeeg6Gg9TpBO6tEk5DFBhg9vsa4Y&s=10">
+                            <div class="card-info">
+                                <h4>Vingadores: Doomsday</h4>
+                                <p>Trailer Vazado</p>
+                                <p class="card-date">2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow next" onclick="scrollSlider(this, 1)">&#10095;</button>
+                </div>
+            </section>
+
+            <div class="category-divider">
+                <span class="rgb-outline">🍿 MAXIMUS PLAY 🍿</span>
+            </div>
+
+            <section class="category-slider">
+                <h2 class="category-title">
+                    Filmes Recomendados <span class="emoji-animado">📀</span>
+                    <a href="explorar.html" class="ver-mais-h2">Ver Mais ></a>
+                </h2>
+                <div class="slider-wrapper">
+                    <button class="slider-arrow prev" onclick="scrollSlider(this, -1)">&#10094;</button>
+                    <div class="slider-track">
+                        <div class="card" onclick="window.location.href='detalhes.html?title=Tropa de Elite&img=https://image.tmdb.org/t/p/w220_and_h330_face/atl4a9VFVP7JYvk4GeSgqhLOfjC.jpg&url=https://playerflixapi.com/filme/tt0861739'">
+                            <img src="https://image.tmdb.org/t/p/w220_and_h330_face/atl4a9VFVP7JYvk4GeSgqhLOfjC.jpg">
+                            <div class="card-info">
+                                <h4>Tropa de Elite</h4>
+                                <p>Crime/Ação</p>
+                                <p class="card-date">2007</p>
+                            </div>
+                        </div>
+                        <div class="card" onclick="window.location.href='detalhes.html?title=Oppenheimer&img=https://image.tmdb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg&url=https://playerflixapi.com/filme/tt15398776'">
+                            <img src="https://image.tmdb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
+                            <div class="card-info">
+                                <h4>Oppenheimer</h4>
+                                <p>Biografia/Drama</p>
+                                <p class="card-date">2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow next" onclick="scrollSlider(this, 1)">&#10095;</button>
+                </div>
+            </section>
+
+            <section class="category-slider">
+                <h2>Séries Recentes 🎬 <a href="explorar.html" class="ver-mais-h2">Ver Mais ></a></h2>
+                <div class="slider-wrapper">
+                    <button class="slider-arrow prev" onclick="scrollSlider(this, -1)">&#10094;</button>
+                    <div class="slider-track">
+                        <div class="card" onclick="window.location.href='detalhes.html?title=Percy Jackson&img=https://image.tmdb.org/t/p/w220_and_h330_face/63zVMAA4oxz9N8EnkNdR8gpyjKf.jpg&url=https://playerflixapi.com/serie/103540'">
+                            <img src="https://image.tmdb.org/t/p/w220_and_h330_face/63zVMAA4oxz9N8EnkNdR8gpyjKf.jpg">
+                            <div class="card-info">
+                                <h4>Percy Jackson</h4>
+                                <p>Ação/Fantasia</p>
+                                <p class="card-date">2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow next" onclick="scrollSlider(this, 1)">&#10095;</button>
+                </div>
+            </section>
+
+        </main>
+    </div> <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="generos.html" class="nav-item"><i class="fas fa-th-large"></i><span>Gêneros</span></a>
+        <a href="explorar.html" class="nav-item"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="pedidos.html" class="nav-item"><i class="fas fa-comment-dots"></i><span>Pedidos</span></a>
+        <a href="social.html" class="nav-item"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

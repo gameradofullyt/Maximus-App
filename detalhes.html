@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="details-page">
+
+    <div class="top-bar-details">
+        <a href="javascript:history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <span id="top-title" class="truncate-text">Nome do Filme</span>
+        <div class="top-icons-details">
+            <i class="fas fa-list-ul" title="Adicionar à Lista"></i>
+            <i class="far fa-heart" id="btn-favorite" title="Favoritar"></i>
+        </div>
+    </div>
+
+    <section class="hero-section-details">
+        <div class="hero-backdrop" id="backdrop"></div>
+        <div class="hero-gradient"></div>
+        <img src="" id="main-poster" class="center-poster">
+    </section>
+
+    <div class="main-info-details">
+        <div class="badges-row">
+            <span class="badge">DUB</span>
+            <span class="badge" id="year-badge">2024</span>
+            <span class="badge" id="genre-badge">Filme</span>
+            <span class="badge">1.2M Views</span>
+        </div>
+
+        <div class="action-grid-details">
+            <div class="action-item-details" onclick="alert('Conectando ao Chromecast/TV... (Função em desenvolvimento)')">
+                <button class="circle-btn-details"><i class="fas fa-cast"></i></button>
+                <span>Espelhar</span>
+            </div>
+            <div class="action-item-details" id="btn-assistir">
+                <button class="circle-btn-details play-main-details"><i class="fas fa-play"></i></button>
+                <span>Assistir</span>
+            </div>
+            <div class="action-item-details" id="btn-baixar">
+                <button class="circle-btn-details"><i class="fas fa-download"></i></button>
+                <span>Baixar</span>
+            </div>
+            <div class="action-item-details" id="btn-compartilhar">
+                <button class="circle-btn-details"><i class="fas fa-share-alt"></i></button>
+                <span>Compartilhar</span>
+            </div>
+        </div>
+
+        <div class="text-content-details">
+            <h3>Título</h3>
+            <h2 id="movie-title">Nome do Filme</h2>
+            <h3>Sinopse</h3>
+            <p id="movie-sinopse">Carregando a descrição detalhada do conteúdo...</p>
+        </div>
+    </div>
+
+    <section class="category-slider" style="margin-bottom: 80px;">
+        <div class="category-header">
+            <h2>Recomendações</h2>
+            <a href="explorar.html" class="ver-mais-btn">Mais ></a>
+        </div>
+        <div class="slider-wrapper">
+            <button class="slider-arrow prev" onclick="scrollSlider(this, -1)">&#10094;</button>
+            <div class="slider-track" id="recomendacoes-track">
+                </div>
+            <button class="slider-arrow next" onclick="scrollSlider(this, 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="generos.html" class="nav-item"><i class="fas fa-th-large"></i><span>Gêneros</span></a>
+        <a href="explorar.html" class="nav-item"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="pedidos.html" class="nav-item"><i class="fas fa-comment-dots"></i><span>Pedidos</span></a>
+        <a href="social.html" class="nav-item"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Pega os dados da URL
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title') || 'Indisponível';
+        const imgUrl = params.get('img') || 'https://via.placeholder.com/300x450';
+        const playUrl = params.get('url') || '#';
+
+        document.getElementById('movie-title').innerText = title;
+        document.getElementById('top-title').innerText = title;
+        document.getElementById('main-poster').src = imgUrl;
+        document.getElementById('backdrop').style.backgroundImage = `url('${imgUrl}')`;
+
+        // Botão Assistir (Implementando a Lógica de Retomada de Reprodução)
+        document.getElementById('btn-assistir').onclick = () => {
+            // Em um sistema real, leríamos o LocalStorage para ver o tempo salvo.
+            // Aqui simulamos uma retomada de 2 minutos (120 segundos).
+            const simulatedTime = 120; 
+            const finalUrl = `player.html?title=${encodeURIComponent(title)}&url=${encodeURIComponent(playUrl)}&time=${simulatedTime}`;
+            
+            // Adiciona ao Histórico automaticamente no "Banco de Dados" LocalStorage
+            BD.adicionarHistorico({title, img: imgUrl, url: playUrl});
+            
+            window.location.href = finalUrl;
+        };
+
+        // Botão Compartilhar (Nativo do Celular)
+        document.getElementById('btn-compartilhar').onclick = async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title,
+                        text: `Assista ${title} no CINE PIPOCA!`,
+                        url: window.location.href,
+                    });
+                } catch (err) { console.log('Erro ao compartilhar:', err); }
+            } else {
+                alert('Seu navegador não suporta a função de compartilhar nativa. Copie o link da barra de endereço.');
+            }
+        };
+
+        // Botão Baixar (Força o download se for um link direto - simulado)
+        document.getElementById('btn-baixar').onclick = () => {
+            const a = document.createElement('a');
+            a.href = playUrl; // Idealmente aqui seria o link do .mp4 direto
+            a.download = title;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            alert('Iniciando o download... (Simulação baseada no link do player)');
+        };
+
+        // Favoritar (Coração animado e Salvar no "Banco de Dados")
+        const btnFav = document.getElementById('btn-favorite');
+        btnFav.onclick = function() {
+            if(this.classList.contains('far')) {
+                this.classList.replace('far', 'fas');
+                this.style.color = '#C63C51'; // Fica vermelho
+                BD.adicionarFavorito({title, img: imgUrl, url: playUrl});
+            } else {
+                this.classList.replace('fas', 'far');
+                this.style.color = '#fff';
+                BD.removerFavorito(title);
+            }
+        };
+
+        // Gerar Recomendações aleatórias (Simulando outros filmes do site)
+        const recTrack = document.getElementById('recomendacoes-track');
+        const recomendacoesValidas = [
+            {title: "Solo Leveling", img: "https://images.justwatch.com/poster/310154566/s332/temporada-1", url: "https://playerflixapi.com/serie/127532"},
+            {title: "Percy Jackson", img: "https://image.tmdb.org/t/p/w220_and_h330_face/63zVMAA4oxz9N8EnkNdR8gpyjKf.jpg", url: "https://playerflixapi.com/serie/103540"},
+            {title: "Oppenheimer", img: "https://image.tmdb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", url: "https://playerflixapi.com/filme/tt15398776"}
+        ];
+        
+        recomendacoesValidas.forEach(item => {
+            recTrack.innerHTML += `
+                <div class="card" onclick="window.location.href='detalhes.html?title=${encodeURIComponent(item.title)}&img=${encodeURIComponent(item.img)}&url=${encodeURIComponent(item.url)}'">
+                    <img src="${item.img}">
+                    <div class="card-info">
+                        <h4>${item.title}</h4>
+                        <p class="card-date">Recomendado</p>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

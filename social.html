@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social | CINE PIPOCA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para a página social */
+        .verified-badge-social { color: #1DA1F2; margin-left: 5px; animation: rotateBadgeSocial 4s linear infinite; display: inline-block; font-size: 0.8rem;}
+        @keyframes rotateBadgeSocial { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="social-page">
+
+    <header class="navbar fixed-nav">
+        <h1 class="logo-rgb">👥 SOCIAL </h1>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInputUsers" class="search-input" placeholder="Pesquisar usuários...">
+        </div>
+    </header>
+
+    <main class="content" style="margin-top: 80px; margin-bottom: 80px;">
+        <h2 style="margin: 20px 0; color: #888; font-weight: 300;">Sugestões de Amizade</h2>
+        
+        <div class="explore-grid" id="users-grid">
+            
+            <div class="user-card-social" onclick="window.location.href='perfil.html?user=@gameradozinho'">
+                <img src="https://via.placeholder.com/80/ffa502/fff?text=R" class="user-avatar-social">
+                <h4>Renan Cervinski <i class="fas fa-check-circle verified-badge-social"></i></h4>
+                <p>@gameradozinho</p>
+                <p class="social-meta">23 Seguidores • 15 Curtidas</p>
+                <button class="circle-btn play-main" style="width:100%; height:35px; border-radius:4px; font-size:0.8rem; margin-top:10px;"><i class="fas fa-user-plus"></i> Seguir</button>
+            </div>
+
+            <div class="user-card-social" onclick="window.location.href='perfil.html?user=@visavip123'">
+                <img src="https://via.placeholder.com/80/2ed573/fff?text=V" class="user-avatar-social">
+                <h4>Visitante VIP</h4>
+                <p>@visavip123</p>
+                <p class="social-meta">5 Seguidores • 3 Curtidas</p>
+                <button class="circle-btn-details" style="width:100%; height:35px; border-radius:4px; font-size:0.8rem; margin-top:10px;"><i class="fas fa-check"></i> Seguindo</button>
+            </div>
+
+            </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Principal</span></a>
+        <a href="generos.html" class="nav-item"><i class="fas fa-th-large"></i><span>Gêneros</span></a>
+        <a href="explorar.html" class="nav-item"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="pedidos.html" class="nav-item"><i class="fas fa-comment-dots"></i><span>Pedidos</span></a>
+        <a href="social.html" class="nav-item active"><i class="fas fa-users"></i><span>Social</span></a>
+        <a href="conta.html" class="nav-item"><i class="fas fa-user"></i><span>Conta</span></a>
+    </nav>
+
+</body>
+</html>
